@@ -60,3 +60,9 @@ Layout/LineLength:
   Max: 100
   Exclude:
     - 'Gemfile'
+
+RSpec/MultipleExpectations:
+  Enabled: false
+
+RSpec/ExampleLength:
+  Enabled: false
