@@ -23,6 +23,7 @@ RSpec.describe Lib::Serializers::MatchesSerializer do
     new_match = Lib::Models::Match.new
     new_match.players = [first_player, second_player]
     new_match.total_kills = 2
+    new_match.deaths = { 'MOD_TRIGGER_HURT' => 1, 'MOD_ROCKET_SPLASH' => 1 }
     new_match
   end
 
@@ -54,6 +55,31 @@ RSpec.describe Lib::Serializers::MatchesSerializer do
         expected_json = JSON.pretty_generate(expected_report)
 
         expect(described_class.new.to_json([match])).to eq(expected_json)
+      end
+    end
+  end
+
+  describe '#to_kill_by_means_json' do
+    context 'when there are no matches' do
+      it 'returns an empty array JSON' do
+        expected_json = JSON.pretty_generate([])
+        expect(described_class.new.to_kill_by_means_json([])).to eq(expected_json)
+      end
+    end
+
+    context 'when there are matches' do
+      it 'returns the matches as the kill by means JSON' do
+        expected_report = [
+          {
+            "game-1": {
+              kills_by_means: { 'MOD_TRIGGER_HURT' => 1, 'MOD_ROCKET_SPLASH' => 1 }
+            }
+          }
+        ]
+
+        expected_json = JSON.pretty_generate(expected_report)
+
+        expect(described_class.new.to_kill_by_means_json([match])).to eq(expected_json)
       end
     end
   end

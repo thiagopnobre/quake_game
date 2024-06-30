@@ -20,6 +20,16 @@ module Lib
 
         JSON.pretty_generate(reports)
       end
+
+      def to_kill_by_means_json(matches)
+        reports = matches.map.with_index(1) do |match, index|
+          {
+            "game-#{index}": { kills_by_means: match.deaths }
+          }
+        end
+
+        JSON.pretty_generate(reports)
+      end
     end
   end
 end

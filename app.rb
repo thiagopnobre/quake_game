@@ -9,6 +9,7 @@ class App
 
       serializer = Lib::Serializers::MatchesSerializer.new
       puts(serializer.to_json(service.matches))
+      puts(serializer.to_kill_by_means_json(service.matches))
     end
   end
 end
