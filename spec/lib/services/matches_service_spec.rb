@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require './lib/models/match'
+require './lib/models/player'
 require './lib/services/matches_service'
 
 RSpec.describe Lib::Services::MatchesService do
