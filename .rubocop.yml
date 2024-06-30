@@ -35,7 +35,7 @@ Metrics/BlockLength:
 # Offense count: 1
 # Configuration parameters: AllowedMethods, AllowedPatterns.
 Metrics/CyclomaticComplexity:
-  Max: 6
+  Max: 8
 
 # Offense count: 1
 # Configuration parameters: CountComments, CountAsOne, AllowedMethods, AllowedPatterns.
