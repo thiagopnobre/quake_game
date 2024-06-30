@@ -92,15 +92,19 @@ module Lib
 
       def compute_world_kill(line_info)
         killed_id = line_info[3]
+        death_cause = line_info[-1]
         @current_players[killed_id].score -= 1
         @current_match.total_kills += 1
+        @current_match.deaths[death_cause] = @current_match.deaths.fetch(death_cause, 0) + 1
       end
 
       def compute_player_kill(line_info)
         killer_id = line_info[2]
         killed_id = line_info[3]
+        death_cause = line_info[-1]
         @current_players[killer_id].score += 1 if killer_id != killed_id
         @current_match.total_kills += 1
+        @current_match.deaths[death_cause] = @current_match.deaths.fetch(death_cause, 0) + 1
       end
     end
   end

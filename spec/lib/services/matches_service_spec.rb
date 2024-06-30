@@ -37,6 +37,7 @@ RSpec.describe Lib::Services::MatchesService do
         expected_match = service.matches[0]
         expect(expected_match.total_kills).to eq 0
         expect(expected_match.players).to eq []
+        expect(expected_match.deaths).to eq({})
       end
 
       it 'creates a new match and set the current match and players to an empty state' do
@@ -58,6 +59,7 @@ RSpec.describe Lib::Services::MatchesService do
         expected_match = service.matches[1]
         expect(expected_match.total_kills).to eq 0
         expect(expected_match.players).to eq []
+        expect(expected_match.deaths).to eq({})
       end
     end
 
@@ -83,6 +85,7 @@ RSpec.describe Lib::Services::MatchesService do
         expected_match = service.matches[0]
         expect(expected_match.total_kills).to eq 0
         expect(expected_match.players).to eq [expected_player]
+        expect(expected_match.deaths).to eq({})
       end
     end
 
@@ -130,6 +133,7 @@ RSpec.describe Lib::Services::MatchesService do
         expected_match = service.matches[0]
         expect(expected_match.total_kills).to eq 1
         expect(expected_match.players).to eq [expected_player]
+        expect(expected_match.deaths).to eq({ 'MOD_TRIGGER_HURT' => 1 })
       end
     end
 
@@ -162,6 +166,7 @@ RSpec.describe Lib::Services::MatchesService do
         expected_match = service.matches[0]
         expect(expected_match.total_kills).to eq 1
         expect(expected_match.players).to eq [expected_player1, expected_player2]
+        expect(expected_match.deaths).to eq({ 'MOD_ROCKET_SPLASH' => 1 })
       end
     end
 
@@ -189,6 +194,7 @@ RSpec.describe Lib::Services::MatchesService do
         expected_match = service.matches[0]
         expect(expected_match.total_kills).to eq 1
         expect(expected_match.players).to eq [expected_player]
+        expect(expected_match.deaths).to eq({ 'MOD_ROCKET_SPLASH' => 1 })
       end
     end
 
@@ -245,6 +251,7 @@ RSpec.describe Lib::Services::MatchesService do
         expected_match = service.matches[0]
         expect(expected_match.total_kills).to eq 2
         expect(expected_match.players).to eq [expected_player1, expected_player2]
+        expect(expected_match.deaths).to eq({ 'MOD_TRIGGER_HURT' => 1, 'MOD_ROCKET_SPLASH' => 1 })
       end
     end
   end
