@@ -9,6 +9,7 @@ RSpec.describe Lib::Models::Match do
 
       expect(match.total_kills).to eq 0
       expect(match.players).to eq []
+      expect(match.deaths).to eq({})
     end
   end
 end
